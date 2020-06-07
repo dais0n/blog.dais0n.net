@@ -1,6 +1,7 @@
 +++
 date = "2018-02-18T13:56:02+09:00"
-engineering = ["zsh", "shell"]
+categories = ["enginnerling"]
+tags = ["zsh"]
 draft = false
 author = "dais0n"
 title = "zshでfishライクなシェルをzplugで楽に作る"

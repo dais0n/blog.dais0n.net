@@ -1,6 +1,7 @@
 +++
 date = "2019-01-27T16:00:02+09:00"
-engineering = ["k8s"]
+categories = ["enginnerling"]
+tags = ["zsh"]
 draft = false
 author = "dais0n"
 title = "常に同じパフォーマンスを発揮するdotfilesの設定"

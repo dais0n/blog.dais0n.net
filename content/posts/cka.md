@@ -1,6 +1,7 @@
 +++
 date = "2020-02-11T00:45:02+09:00"
-engineering = ["k8s"]
+categories = ["enginnerling"]
+tags = ["k8s"]
 draft = false
 author = "dais0n"
 title = "CKA合格までの勉強方法"

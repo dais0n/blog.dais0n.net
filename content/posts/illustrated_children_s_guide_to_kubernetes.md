@@ -1,6 +1,7 @@
 +++
 date = "2018-12-22T12:00:02+09:00"
-engineering = ["k8s"]
+categories = ["enginnerling"]
+tags = ["k8s"]
 draft = false
 author = "dais0n"
 title = "the illustrated Children's Guide to Kubernetes訳"
