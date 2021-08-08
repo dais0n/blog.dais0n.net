@@ -2,22 +2,23 @@ baseURL = 'https://blog.dais0n.net/'
 title = 'dais0nNote'
 theme = 'smol'
 hasCJKLanguage = true
+canonifyurls = true
 
 [menu]
   [[menu.main]]
     identifier = "posts"
     name = "Posts"
-    url = "/posts/"
+    url = "posts/"
     weight = 1
   [[menu.main]]
     identifier = "categories"
     name = "Categories"
-    url = "/categories/"
+    url = "categories/"
     weight = 2
   [[menu.main]]
     identifier = "tags"
     name = "Tags"
-    url = "/tags/"
+    url = "tags/"
     weight = 3
   [[menu.footer]]
     name = "Github"
