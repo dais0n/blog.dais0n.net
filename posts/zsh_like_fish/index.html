@@ -1,0 +1,72 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><style type=text/css>body{font-family:monospace}</style><title>zshでfishライクなシェルをzplugで楽に作る</title><link rel=stylesheet href=/css/style.css></head><body><header>================<br>== <a href=https://blog.dais0n.net/>dais0nNote</a> ==<br>================<div style=float:right></div><br><p><nav><a href=/><b>Start</b></a>.
+<a href=/posts/><b>Posts</b></a>.
+<a href=/categories/><b>Categories</b></a>.
+<a href=/tags/><b>Tags</b></a>.</nav></p></header><main><article><h1>zshでfishライクなシェルをzplugで楽に作る</h1><b><time>2018-02-18 13:56:02</time></b>
+<a href=/tags/zsh>zsh</a><div><h2 id=きっかけ>きっかけ</h2><ul><li><p>普段fish使ってるエンジニアに「zshでもfishっぽく使う設定をできるだけ設定ファイル少なく書きたい(長くすると管理がだるい)」と相談されたので一緒に設定ファイルを作ったら良い感じのができた</p></li><li><p>以前書いた<a href=https://dais0n.github.io/blog/peco/>毎回コマンド調べてない？それpeco使えば解決できるよ</a>ではプラグイン使用せず設定書いたので、もう少し簡単に導入できる方法を探してた</p></li></ul><h2 id=ゴール>ゴール</h2><ol><li>zshでfishライクなシェルを作る</li><li>履歴検索などはpecoなどを使いインタラクティブにフィルタリングし、コマンド履歴をフル活用する</li><li>設定はできるだけ少なく</li></ol><p>最終的にこんな感じになります<figure><img src=../../../images/zsh_like_fish.gif></figure></p><p>上記で</p><ul><li>コマンド予測補完</li><li>コマンドシンタックスハイライト</li><li>コマンド履歴インクリメンタルサーチ</li><li>ディレクトリ履歴インクリメンタルサーチ</li></ul><p>をやってます。</p><h2 id=今回使用するプラグインなどの紹介>今回使用するプラグインなどの紹介</h2><h3 id=zplughttpsgithubcomzplugzplug><a href=https://github.com/zplug/zplug>zplug</a></h3><p>今回は設定を少なくし、プラグインの導入を楽にしたいのでzshのプラグインマネージャであるzplugを入れてプラグインを管理します</p><p>こんな感じで定義したプラグインを入れてくれます！かっこいいですね<figure><img src=../../../images/zplug.gif></figure></p><p>zshのプラグインマネージャには色々あります(antigen、oh-my-zsh)が、zplugには以下の特徴があります。</p><ul><li>軽い</li><li>依存関係を保ったインストールやブランチロック・リビジョンロックができる</li><li>プラグインマネージャの範疇を超えることはしない</li></ul><p>プラグインマネージャには、上記の機能があれば十分なのでzplugを採用しました。シンプルで最高です。
+<del>oh-my-zshなどの俺の設定を使え系のプラグインマネージャはちょっと、、</del></p><p>使い方は、zshrcに以下のようにプラグインを定義した後、<code>zplug install</code>を打つと.zplug以下のディレクトリにプラグインをインストールしてくれます。</p><pre><code>zplug 'felixr/docker-zsh-completion'
+</code></pre><h3 id=zsh-autosuggestionshttpsgithubcomzsh-userszsh-autosuggestions><a href=https://github.com/zsh-users/zsh-autosuggestions>zsh-autosuggestions</a></h3><p>zshをfishっぽくするエッセンスの1つ目で、fishのように途中まで文字を入力すると過去の入力履歴から補完が出てくるやつです。</p><figure><img src=../../../images/zsh_autosuggestion.gif></figure><p>候補が出てきたら、C-fで補完を行の最後まで確定、Option-fで単語毎に確定できます。</p><p>Optionはターミナルの設定でOptionをmetaキーに割り当てないと効かないので気をつけてください。</p><h3 id=zsh-userszsh-syntax-highlightinghttpsgithubcomzsh-userszsh-syntax-highlighting><a href=https://github.com/zsh-users/zsh-syntax-highlighting>zsh-users/zsh-syntax-highlighting</a></h3><p>zshをfizhっぽくするエッセンスの2つ目でfishのように、コマンドのシンタックスハイライトをしてくれます。</p><p><figure><img src=../../../images/zsh_syntax_highlighting.png></figure>(公式より引用)</p><p>これなら打っている途中でコマンドが間違っているかわかる
+存在しないコマンドは赤くなるので、<code>which</code>打つ手間省けます</p><h3 id=pecohttpsgithubcompecopeco><a href=https://github.com/peco/peco>peco</a></h3><p>標準入力から受けた行データをインクリメンタルサーチして、選択した行を標準出力に返すコマンドです
+peco コマンドでググれば沢山でてきます。詳しくは<a href=https://dais0n.github.io/blog/peco/>こちら</a>でも解説しているので、是非見て下さい。</p><h3 id=anyframehttpsgithubcommollifieranyframe><a href=https://github.com/mollifier/anyframe>anyframe</a></h3><p>pecoとzshの相性は最強なのですが、若干シェルの関数を書く必要があります。
+便利な関数は決まっているので、特に便利な以下の関数をまとめてくれているプラグインです</p><ul><li><strong>コマンド履歴をpecoで選択して実行する関数</strong></li><li><strong>ディレクトリ履歴をpecoで選択して実行する関数</strong></li><li>プロセスをpecoで選択後killする関数</li><li>tmux sessionをpecoで選択する関数</li><li>git checkoutをpecoで選択して実行する関数</li><li>ghqコマンドで管理しているリポジトリに移動する</li></ul><p>プラグインを入れて、どの関数をどのショートカットで使うかを設定するだけです。
+ちなみにpercol、fzfでも大丈夫で、インストールしてあるフィルタリングツールを勝手に選択して使ってくれます。</p><p>今回は特に便利な上記の太字の機能だけ入れていきます</p><h2 id=導入方法>導入方法</h2><p>上記で紹介したものをインストールしていきます。.zshrcに書いていきます</p><ul><li>zplugで上記で定義したプラグインを入れます<ul><li>zsh-autosuggestions</li><li>zsh-syntax-highlighting</li><li>peco</li><li>anyframe</li></ul></li></ul><pre><code># zplugがなければzplugをインストール後zshを再起動
+if [ ! -e &quot;${HOME}/.zplug/init.zsh&quot; ]; then
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+fi
+source ${HOME}/.zplug/init.zsh
+# ここに入れたいプラグインを書いていく(gitのパスで)
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-autosuggestions'
+zplug &quot;peco/peco&quot;, as:command, from:gh-r
+zplug &quot;mollifier/anyframe&quot;
+# プラグインがまだインストールされてないならインストールするか聞く
+if ! zplug check --verbose; then
+    printf &quot;Install? [y/N]: &quot;
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+# .zplug以下にパスを通す。プラグイン読み込み
+zplug load --verbose
+</code></pre><p>zsh-autosuggestionsとzsh-syntax-highlightingは入れるだけで機能します。</p><p>実は上記に書いてあるようにpecoもzplugで入れられるんです！これはすごく便利ですね。</p><ul><li>anyframeの設定を入れますが、履歴検索とディレクトリ検索をするにあたって、zshのコマンド履歴とディレクトリスタック(cdr)の設定を書きます</li></ul><pre><code># --------------
+# cdr関連の設定
+# --------------
+setopt AUTO_PUSHD # cdしたら自動でディレクトリスタックする
+setopt pushd_ignore_dups # 同じディレクトリは追加しない
+DIRSTACKSIZE=100 # スタックサイズ
+# cdr, add-zsh-hook を有効にする
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# --------------
+# 履歴関連の設定
+# --------------
+HISTFILE=~/.zsh_history #履歴ファイルの設定
+HISTSIZE=1000000 # メモリに保存される履歴の件数。(保存数だけ履歴を検索できる)
+SAVEHIST=1000000 # ファイルに何件保存するか
+setopt extended_history # 実行時間とかも保存する
+setopt share_history # 別のターミナルでも履歴を参照できるようにする
+setopt hist_ignore_all_dups # 過去に同じ履歴が存在する場合、古い履歴を削除し重複しない
+setopt hist_ignore_space # コマンド先頭スペースの場合保存しない
+setopt hist_verify # ヒストリを呼び出してから実行する間に一旦編集できる状態になる
+setopt hist_reduce_blanks #余分なスペースを削除してヒストリに記録する
+setopt hist_save_no_dups # histryコマンドは残さない
+setopt hist_expire_dups_first # 古い履歴を削除する必要がある場合、まず重複しているものから削除
+setopt hist_expand # 補完時にヒストリを自動的に展開する
+setopt inc_append_history # 履歴をインクリメンタルに追加
+
+# --------------
+# anyframeの設定
+# --------------
+# anyframeで明示的にpecoを使用するように定義
+zstyle &quot;:anyframe:selector:&quot; use peco
+# C-zでcd履歴検索後移動
+bindkey '^Z' anyframe-widget-cdr
+# C-rでコマンド履歴検索後実行
+bindkey '^R' anyframe-widget-put-history
+</code></pre><p>これで設定は完了です！gistに今回の設定＋おすすめ設定を書いたzshrcをおいておきます
+<a href=https://gist.github.com/dais0n/0e865dd54932b9ff4ab1de40200db717>https://gist.github.com/dais0n/0e865dd54932b9ff4ab1de40200db717</a></p><h2 id=どの環境でも同じ設定を使う>どの環境でも同じ設定を使う</h2><p>これで結構便利なシェルになったと思います。しかしサーバ入る度にzshrcコピーしてといったことをするのは面倒ですよね</p><p>サーバ入る度に一発コマンドを打てば同じ環境が出来上がるようにします
+これを行うためには</p><ul><li><p>zshrc, vimrcなどをdotfilesとしてgitで管理</p></li><li><p>そのリポジトリにinstall.shを作る</p><ul><li>git clone後、シンボリックリンクを貼り、zshを再起動するといったことをシェルスクリプトで書く</li></ul></li><li><p>サーバでinstall.shを実行(例えばこんな感じ)</p><ul><li><code>bash -c "$(curl -L https://raw.githubusercontent.com/dais0n/dotfiles/master/rc/installer.sh)"</code></li></ul></li></ul><p>これだけです。これでどこでも同じ設定のシェルが出来上がります！</p><h2 id=まとめ>まとめ</h2><p>今回はzshでfishライクなシェルの設定を作りました。
+zplugを使うことで設定が少なく、楽にプラグインを導入することができました！
+これなら管理しやすいかと思います。</p><h2 id=参考>参考</h2><ul><li><a href=https://qiita.com/b4b4r07/items/cd326cd31e01955b788b>おい、Antigen もいいけど zplug 使えよ</a> : zplug作者の記事で、zplugを作った背景から書かれていて感動する記事</li><li><a href=https://qiita.com/mollifier/items/81b18c012d7841ab33c3>zshでpecoと連携するためのanyframeというプラグインを作った</a> : anyframe作者の記事</li></ul></div></article></main><aside><div><div><h3>LATEST POSTS</h3></div><div><ul><li><a href=/posts/cka/>CKA合格までの勉強方法</a></li><li><a href=/posts/ckad/>CKAD合格までの勉強方法</a></li><li><a href=/posts/dotfiles_in_anywhere/>常に同じパフォーマンスを発揮するdotfilesの設定</a></li><li><a href=/posts/illustrated_children_s_guide_to_kubernetes/>the illustrated Children's Guide to Kubernetes訳</a></li><li><a href=/posts/zsh_like_fish/>zshでfishライクなシェルをzplugで楽に作る</a></li></ul></div></div></aside><footer><p>&copy; 2021 <a href=https://blog.dais0n.net/><b>dais0nNote</b></a>.
+<a href=https://github.com/dais0n><b>Github</b></a>.
+<a href=https://twitter.com/dais0n_><b>Twitter</b></a>.</p></footer></body></html>
