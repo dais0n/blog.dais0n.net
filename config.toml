@@ -28,3 +28,7 @@ canonifyurls = true
     name = "Twitter"
     url = "https://twitter.com/dais0n_"
     weight = 2
+  [[menu.footer]]
+    name = "Youtube"
+    url = "https://www.youtube.com/channel/UC0jYN0VlTIl0Tgg8Y41QuIw"
+    weight = 3
