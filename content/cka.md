@@ -18,9 +18,7 @@ CKAD合格までの勉強方法は[こちら](https://blog.dais0n.net/posts/engi
 合格に必要な知識としては[公式ページ](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/)のDomains & Competenciesに詳しく記載してありますが、大きく
 
 - Kubernetesの基本リソースの理解
-
 - Kubernetesクラスタ管理者向けのリソースの理解
-
 - Kubernetesクラスタを構成するコンポーネントの理解及びクラスタの構築
 
 が必要かと思います。
@@ -47,6 +45,4 @@ CKAD合格までの勉強方法は[こちら](https://blog.dais0n.net/posts/engi
 他の方のブログでもまとめられていますが、このUdemyの講座は講義からテストまで構成が完璧です。
 
 ## まとめ
-
-- [Certified Kubernetes Administrator (CKA) with Practice Tests](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/)がCKA対策では最高だった
-
+[Certified Kubernetes Administrator (CKA) with Practice Tests](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/)がCKA対策では最高だった
