@@ -107,7 +107,7 @@ gitignoreはグローバルにignoreしたいファイルを書きます。キ�
 ## Makefileの作成
 後ほどインストールスクリプトを書くんですが、その中ではほぼmakeのinstallタスクを実行するだけなので、先にMakefileを書きます。ちょっと抜粋すると
 
-```
+```sh
 install: vim-init zsh-init
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	vim +PlugInstall +qall
@@ -144,7 +144,7 @@ installはシンボリックリンクを貼ったりパスに置いたりして�
 macとlinuxなど環境ごとに異なるバイナリをインストールするためには、Makefileの中で判定させます。
 例えばpecoのインストールタスクは以下のようになってます。
 
-```
+```sh
 UNAME := $(shell uname)
 peco-init:
 ifeq ($(UNAME),Darwin)
@@ -167,7 +167,7 @@ unameコマンドを最初に打っておき、その結果でifeqを用いて�
 
 だけです。他はかっこよくアスキーアート出したりしてもよいかと思います。自分のインストールスクリプトは短いのでほぼ全文以下に記載します。
 
-```
+```sh
 # check git
 if ! type git > /dev/null 2>&1; then
   echo "this dotfiles is required gitd"
@@ -187,8 +187,7 @@ cd dotfiles && make
 ```
 
 これをinstaller.shとしてgitにあげておき
-
-```
+```sh
 bash -c "$(curl -L https://raw.githubusercontent.com/dais0n/dotfiles/master/rc/installer.sh)"
 ```
 
@@ -205,7 +204,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/dais0n/dotfiles/master/rc/i
 ### .zsh/snippetを作る
 .zsh/snippetはただのコマンド羅列ファイルですｗ以下によく忘れるコマンドを記載してdotfilesとして管理します。コマンドの後ろに#をつけてコメントを書くと良いです。例えば以下用な感じです。
 
-```
+```sh
 # git
 git commit --amend
 git branch -D # delete local branch
@@ -227,7 +226,7 @@ nc localhost 8080 # netcat
 ### snippetの内容を呼び出して表示するzshの関数を作る
 作成したsnippetファイルをpecoを使ってインクリメンタルサーチさせます。
 
-```
+```sh
 function peco-snippets() {
     BUFFER=$(grep -v "^#" ~/.zsh/snippets | peco --query "$LBUFFER")
     zle reset-prompt
