@@ -4,7 +4,7 @@ categories = ["enginnerling"]
 tags = ["zsh"]
 draft = false
 author = "dais0n"
-title = "zshでfishライクなシェルをzplugで楽に作る"
+title = "zshでfishライクなシェルを楽に作る"
 +++
 
 ## きっかけ

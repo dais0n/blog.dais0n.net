@@ -4,7 +4,7 @@ categories = ["enginnerling"]
 tags = ["zsh"]
 draft = false
 author = "dais0n"
-title = "常に同じパフォーマンスを発揮するdotfilesの設定"
+title = "dotfilesの設定 in 2019"
 +++
 
 ## 背景
