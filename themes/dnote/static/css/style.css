@@ -11,30 +11,18 @@ body {
 
 #header {
     margin-bottom: 50px;
-    font-family: Hack;
     display: flex;
-    justify-content: space-between;
 }
 
 #main header {
     margin-bottom: 40px;
 }
 
-/* frontmatter */
-ul.frontmatter {
-    font-size: .9rem;
-    font-family: Hack, monospace;
-}
-ul.frontmatter:after{ content: "---"; }
-ul.frontmatter li:before { content: ""; }
-ul.frontmatter li.date:before { content: "date: "; }
-ul.frontmatter li.author:before { content: "author: "; }
-ul.frontmatter li.tags:before { content: "tags: ["; }
-ul.frontmatter li.tags:after { content: "]"; }
-ul.frontmatter li.tags .tag:before { content: "\""; }
-ul.frontmatter li.tags .tag:after { content: "\",\00a0"; }
-ul.frontmatter li.tags .tag:last-child:after { content: "\""; }
-/* frontmatter end */
+div.tags:before { content: "tags: [ "; }
+div.tags:after { content: " ]"; }
+div.tags .tag:before { content: "\""; }
+div.tags .tag:after { content: "\",\00a0"; }
+div.tags .tag:last-child:after { content: "\""; }
 
 h1:before{ content: "# "; }
 h2:before{ content: "## "; }
@@ -42,11 +30,11 @@ h3:before{ content: "### "; }
 h4:before{ content: "#### "; }
 
 a {
-  color: #34495e; /* リンクの色を炭グレーに設定 */
+  color: #7D8590;
 }
 
 a:hover {
-  color: gray; /* マウスオーバー時の色をグレーに設定 */
+  color: blue;
 }
 
 ul {
@@ -62,7 +50,7 @@ li > ul > li > ul {
 }
 
 ul li {
-    line-height: 2.5em;
+    line-height: 2em;
     list-style-type: none;
 }
 
@@ -115,10 +103,6 @@ img {
     height: auto;
     display: block;
     margin: 0 auto;
-}
-
-blockquote {
-    font-style: italic;
 }
 
 #footer {

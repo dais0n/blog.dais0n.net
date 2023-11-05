@@ -3,18 +3,18 @@
 <section id="main">
   <header>
     <h1 id="title">{{ .Title }}</h1>
-    <ul class="frontmatter">
-        <li class="date"><time datetime="{{ .Date.Local.Format "2006-01-02" }}">{{- .Date.Local.Format "Mon, 02 Jan 2006 15:04:05 -0700" -}}</time></li>
         {{ with .Params.tags }}
-        <li class="tags">{{ range . -}}
+        <div class="tags">{{ range . -}}
             <span class="tag"><a href="{{ "tags" | absLangURL}}/{{ . | urlize }}">{{ . }}</a></span>
-        {{- end }}</li>
+        {{- end }}
+        </div>
         {{ end }}
-    </ul>
   </header>
   <article>
     {{ .Content }}
   </article>
 </section>
+
+<span class="date"><time datetime="{{ .Date.Local.Format "2006-01-02" }}">{{- .Date.Local.Format "Mon, 02 Jan 2006" -}}</time></span>
 
 {{ end }}

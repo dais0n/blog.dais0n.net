@@ -1,1 +1,10 @@
-<footer id="footer">&copy; {{ now.Year }} <a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></footer>
+<footer id="footer">
+  &copy; {{ now.Year }}
+  <a href="{{.Site.BaseURL}}" style="text-decoration: none;">{{ .Site.Title }}</a>
+  {{ with .Site.Params.social.youtube }}
+  / <a href="https://www.youtube.com/channel/{{ . }}" target="_blank" rel="noopener noreferrer"style="text-decoration: none;">YouTube</a>
+  {{ end }}
+  {{ with .Site.Params.social.github }}
+  / <a href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer"style="text-decoration: none;">Github</a>
+  {{ end }}
+</footer>
