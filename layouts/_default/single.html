@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+<section id="main">
+  <header>
+    <h1 id="title">{{ .Title }}</h1>
+        {{ with .Params.tags }}
+        <div class="tags">{{ range . -}}
+            <span class="tag"><a href="{{ "tags" | absLangURL}}/{{ . | urlize }}">{{ . }}</a></span>
+        {{- end }}
+        </div>
+        {{ end }}
+  </header>
+  <article>
+    {{ .Content }}
+  </article>
+</section>
+
+<span class="date"><time datetime="{{ .Date.Local.Format "2006-01-02" }}">{{- .Date.Local.Format "Mon, 02 Jan 2006" -}}</time></span>
+
+{{ end }}

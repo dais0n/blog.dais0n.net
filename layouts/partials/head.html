@@ -1,0 +1,12 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>
+{{- if eq .Title site.Title -}}
+{{ site.Title }}
+{{- else -}}
+{{ with .Title }}{{ . }}{{ end }}
+{{- end -}}
+</title>
+<link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css" />
+<link rel="alternate" type="application/atom+xml" href="{{.Site.BaseURL}}/index.xml" title="{{ .Site.Title }}">
