@@ -1,11 +1,9 @@
-+++
-date = "2019-04-07T00:45:02+09:00"
-categories = ["enginnerling"]
-tags = ["k8s"]
-draft = false
-author = "dais0n"
-title = "CKAD合格までの勉強方法"
-+++
+---
+date: "2019-04-07T00:45:02+09:00"
+tags: ["k8s"]
+draft: false
+title: "CKAD合格までの勉強方法"
+---
 
 ## はじめに
 CKADを受けてみました。なんとか受かることができたので

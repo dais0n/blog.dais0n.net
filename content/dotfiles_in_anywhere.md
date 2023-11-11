@@ -1,11 +1,9 @@
-+++
-date = "2019-01-27T16:00:02+09:00"
-categories = ["enginnerling"]
-tags = ["zsh"]
-draft = false
-author = "dais0n"
-title = "dotfilesの設定 in 2019"
-+++
+---
+date: "2019-01-27T16:00:02+09:00"
+tags: ["zsh"]
+draft: false
+title: "dotfilesの設定 in 2019"
+---
 
 ## 背景
 自分はサーバにdotfilesや必要なコマンドをインストールするスクリプトを用意していて、サーバに入るとそのスクリプトを走らせることで

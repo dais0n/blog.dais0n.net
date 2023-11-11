@@ -1,11 +1,9 @@
-+++
-date = "2020-02-11T00:45:02+09:00"
-categories = ["enginnerling"]
-tags = ["k8s"]
-draft = false
-author = "dais0n"
-title = "CKA合格までの勉強方法"
-+++
+---
+date: "2020-02-11T00:45:02+09:00"
+tags: ["k8s"]
+draft: false
+title: "CKA合格までの勉強方法"
+---
 
 ## はじめに
 

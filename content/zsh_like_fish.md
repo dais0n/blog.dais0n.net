@@ -1,11 +1,9 @@
-+++
-date = "2018-02-18T13:56:02+09:00"
-categories = ["enginnerling"]
-tags = ["zsh"]
-draft = false
-author = "dais0n"
-title = "zshでfishライクなシェルを楽に作る"
-+++
+---
+date: "2018-02-18T13:56:02+09:00"
+tags: ["zsh"]
+draft: false
+title: "zshでfishライクなシェルを楽に作る"
+---
 
 ## きっかけ
 普段fish使ってるエンジニアに「zshでもfishっぽく使う設定をできるだけ設定ファイル少なく書きたい」と相談されたので一緒に設定ファイルを作ったら良い感じのができた
